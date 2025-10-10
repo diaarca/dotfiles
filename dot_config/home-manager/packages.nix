@@ -22,5 +22,6 @@
     # Others
     discord
     spotify
+    vivaldi
   ];
 }
