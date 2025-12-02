@@ -43,16 +43,16 @@ return {
         "williamboman/mason.nvim",
         automatic_installation = true,
     },
+    
+    -- IMPROVEMENT CODE FEATURES
     -- LSP server plugin for jumps, rename and autocomplete
     {
         "neovim/nvim-lspconfig",
-        lazy = false,
+        lazy = true,
         config = function()
             require("configs.lspconfig")
         end,
     },
-
-    -- IMPROVEMENT CODE FEATURES
     -- Code formatters plugin
     {
         "stevearc/conform.nvim",
@@ -61,16 +61,4 @@ return {
             require("configs.conform")
         end,
     },
-
-
-    -- Copilot LSP
-    -- {
-    -- 	"github/copilot.vim",
-    -- 	lazy = false,
-    -- 	config = function()
-    -- 		vim.g.copilot_no_tab_map = true
-    -- 		vim.g.copilot_assume_mapped = true
-    --            vim.cmd("Copilot disable")
-    -- 	end,
-    -- },
 }

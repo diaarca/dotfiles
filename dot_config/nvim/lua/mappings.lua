@@ -334,22 +334,22 @@ local nvim_tree_mappings = {
 }
 
 local lsp_mappings = {
-    {
-        mode = "i",
-        key = "<C-F>",
-        cmd = 'copilot#Accept("\\<CR>")',
-        opts = {
-            desc = "Accept Copilot suggestion",
-            expr = true,
-            replace_keycodes = false,
-        },
-    },
-    {
-        mode = "n",
-        key = "<leader>ca",
-        cmd = "<cmd>Copilot<CR>",
-        opts = { desc = "Ask to Copilot 3 solutions" },
-    },
+    -- {
+    --     mode = "i",
+    --     key = "<C-F>",
+    --     cmd = 'copilot#Accept("\\<CR>")',
+    --     opts = {
+    --         desc = "Accept Copilot suggestion",
+    --         expr = true,
+    --         replace_keycodes = false,
+    --     },
+    -- },
+    -- {
+    --     mode = "n",
+    --     key = "<leader>ca",
+    --     cmd = "<cmd>Copilot<CR>",
+    --     opts = { desc = "Ask to Copilot 3 solutions" },
+    -- },
     {
         mode = "n",
         key = "gd",
@@ -408,6 +408,7 @@ end
 
 -- Out of Cheatsheet mappings
 map("t", "<tab>", "<tab>")
+map("i", "<tab>", "<tab>")
 
 -- Return the mappings table if needed elsewhere, such as for a cheatsheet
 return cheatsheet_mappings
