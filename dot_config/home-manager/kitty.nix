@@ -70,26 +70,12 @@ let
   };
 in
 {
-  home.file = {
-    ".local/share/applications/kitty.desktop" = {
-      text =
-        let
-          originalDesktopFile = builtins.readFile "${pkgs.kitty}/share/applications/kitty.desktop";
-        in
-        builtins.replaceStrings
-          [ "Exec=kitty" "Icon=kitty" ]
-          [ "Exec=nixGL kitty" "Icon=${pkgs.kitty}/share/icons/hicolor/256x256/apps/kitty.png" ]
-          originalDesktopFile;
-      force = true;
-    };
-  };
-
   programs.kitty = {
     enable = true;
     font = {
       package = pkgs.nerd-fonts.jetbrains-mono;
       name = "JetBrainsMono Nerd Font";
-      size = 15;
+      size = 11;
     };
     shellIntegration.enableFishIntegration = true;
     settings =

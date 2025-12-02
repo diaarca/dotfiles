@@ -15,7 +15,6 @@
       ./nvim.nix
       ./fish.nix
       ./kitty.nix
-      ./vivaldi.nix
       ./aliases.nix
     ];
 
@@ -25,6 +24,37 @@
     VISUAL = "nvim";
     TERMINAL = "kitty";
     PATH = "$HOME/.nix-profile/bin:$PATH";
+  };
+
+  home.file = {
+    ".local/share/applications/kitty.desktop" = {
+      text =
+        let
+          originalDesktopFile = builtins.readFile "${pkgs.kitty}/share/applications/kitty.desktop";
+        in
+        builtins.replaceStrings
+          [
+            "TryExec=kitty"
+            "Exec=kitty"
+          ]
+          [
+            ""
+            "Exec=nixGL kitty"
+          ]
+          originalDesktopFile;
+      force = true;
+    };
+    ".local/share/applications/btop.desktop" = {
+      text =
+        let
+          originalDesktopFile = builtins.readFile "${pkgs.btop}/share/applications/btop.desktop";
+        in
+        builtins.replaceStrings
+          [ "Exec=btop" "Terminal=true" ]
+          [ "Exec=nixGL kitty -1 btop" "Terminal=false" ]
+          originalDesktopFile;
+      force = true;
+    };
   };
 
   nix = {

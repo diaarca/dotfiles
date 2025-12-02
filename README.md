@@ -14,7 +14,7 @@ nix-shell -p chezmoi
 ```
 3. Fetch and apply the configuration from this github repository:
 ```bash
-chezmoi -- init --apply notrage
+chezmoi init https://github.com/diaarca/dotfiles.git
 ```
 4. Exiting the temporary `nix-shell` since we do not anymore need chezmoi:
 ```bash
@@ -22,8 +22,9 @@ exit
 ```
 5. Install `home-manager` which will become our environment manager:
 ```bash
-sudo nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-sudo nix-channel --update
+nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+nix-channel --update
+nix-shell '<home-manager>' -A install
 ```
 6. Setup the whole environment using `home-manager`:
 ```bash
