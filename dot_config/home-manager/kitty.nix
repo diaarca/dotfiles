@@ -73,7 +73,7 @@ in
   programs.kitty = {
     enable = true;
     font = {
-      package = pkgs.nerd-fonts.jetbrains-mono;
+      package = pkgs.nerdfonts.jetbrains-mono;
       name = "JetBrainsMono Nerd Font";
       size = 11;
     };

@@ -1,27 +1,40 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
-  home.packages = with pkgs; [
-    # Dev
-    gcc
-    git
-    gnumake
+  home.packages = with pkgs;
+    let
+      commonPackages = [
+        # Dev
+        git
+        gnumake
 
-    # Dev QoL
-    btop # better top
-    fd   # find alternative
-    tldr # man alternative
+        # Dev QoL
+        btop # better top
+        fd   # find alternative
+        tldr # man alternative
 
-    # Utilities
-    chezmoi
+        # Utilities
+        chezmoi
+        home-manager
+      ];
 
-    # Kitty dependency
-    (import (fetchTarball "https://github.com/nix-community/nixGL/archive/main.tar.gz") { })
-    .auto.nixGLDefault
+      linuxPackages = [
+        # Kitty dependency
+        (import (fetchTarball "https://github.com/nix-community/nixGL/archive/main.tar.gz") { })
+        .auto.nixGLDefault
+        gcc
+        discord
+        spotify
+        vivaldi
+      ];
 
-    # Others
-    discord
-    spotify
-    vivaldi
-  ];
+      darwinPackages = [
+        discord
+        spotify
+      ];
+
+    in
+    commonPackages
+    ++ (lib.optionals pkgs.stdenv.isLinux linuxPackages)
+    ++ (lib.optionals pkgs.stdenv.isDarwin darwinPackages);
 }
