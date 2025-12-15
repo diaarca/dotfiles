@@ -1,5 +1,8 @@
 { pkgs, ... }:
 
+let
+  isLinux = pkgs.stdenv.isLinux;
+in
 {
   home.packages = with pkgs; [
     # Dev
@@ -9,19 +12,13 @@
 
     # Dev QoL
     btop # better top
-    fd   # find alternative
+    fd # find alternative
     tldr # man alternative
 
     # Utilities
     chezmoi
 
-    # Kitty dependency
-    (import (fetchTarball "https://github.com/nix-community/nixGL/archive/main.tar.gz") { })
-    .auto.nixGLDefault
-
     # Others
     discord
-    spotify
-    vivaldi
   ];
 }

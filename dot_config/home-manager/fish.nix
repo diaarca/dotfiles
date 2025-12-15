@@ -5,6 +5,11 @@
     enable = true;
 
     interactiveShellInit = ''
+      # Source personal fish config if it exists
+      if test -f ~/.fishrc
+        source ~/.fishrc
+      end
+
       set fish_greeting # Disable greeting
       if command -q nix-your-shell
         nix-your-shell fish | source

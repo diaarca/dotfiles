@@ -1,0 +1,19 @@
+# This file is managed by Chezmoi and sourced by ~/.config/fish/config.fish
+# It contains platform-specific shell configurations.
+{{ if eq .chezmoi.os "darwin" -}}
+# macOS specific PATH configuration
+# Adds Homebrew and other common macOS paths
+
+# Add Homebrew to the PATH
+fish_add_path "/opt/homebrew/bin"
+fish_add_path "/opt/homebrew/sbin"
+
+# Add MacPorts to the PATH (if you use it)
+fish_add_path "/opt/local/bin"
+fish_add_path "/opt/local/sbin"
+
+# Add other common macOS paths
+fish_add_path "/usr/local/bin"{{ else if eq .chezmoi.os "linux" -}}# This file exists to be sourced by ~/.config/fish/config.fish.
+# For Linux, the PATH is generally simpler and handled well by default.
+# The core Nix paths are now managed by Home Manager directly in home.nix.
+# Add any other Linux-specific shell configurations here if needed.{{ end -}}

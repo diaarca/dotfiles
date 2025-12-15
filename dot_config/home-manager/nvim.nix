@@ -1,5 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }: # Add lib here
 
+let
+  isLinux = pkgs.stdenv.isLinux;
+in
 {
   programs.neovim = {
     enable = true;
@@ -7,7 +10,6 @@
     withPython3 = true;
     extraPackages = with pkgs; [
       # Dependencies
-      xsel # for clipboard (<C-c>)
       fzf # for file finder (<leader>+ff)
       ripgrep # for live grep (<leader>+fw)
 
@@ -15,16 +17,8 @@
       stylua
       black
       clang-tools
-      prettier
-      tex-fmt
+      pkgs.nodePackages.prettier
       nixfmt-rfc-style
-
-      # LSP
-      nixd
-      texlab
-      jdt-language-server
-      python313Packages.python-lsp-server
-
       # Highlight
       tree-sitter
       nodejs
@@ -38,6 +32,6 @@
       vimPlugins.nvim-treesitter-parsers.latex
       vimPlugins.nvim-treesitter-parsers.markdown
       vimPlugins.nvim-treesitter-parsers.java
-    ];
+    ] ++ (lib.optional isLinux pkgs.texlive.tex-fmt); # Only include tex-fmt for Linux
   };
 }

@@ -9,10 +9,10 @@ let
   kittyCommonSettings = {
     os_window_state = "maximized";
     placement_strategy = "top-left";
+    comfirm_os_window_close = 0;
     hide_window_decorations = "yes";
     copy_on_select = true;
-    shell = "fish";
-    include = "current-theme.conf";
+    shell = "/Users/dylan/.nix-profile/bin/fish";
     "map ctrl+w" = "close_window";
   };
 
@@ -70,14 +70,24 @@ let
   };
 in
 {
+  # Add nixGL to packages only on Linux
+  home.packages = lib.mkIf isLinux [
+    (import (pkgs.fetchTarball "https://github.com/nix-community/nixGL/archive/main.tar.gz") { })
+    .auto.nixGLDefault
+  ];
+
   programs.kitty = {
     enable = true;
+
     font = {
+      # if problems with font/size on macOS:
+      # sudo atsutil databases -remove
       package = pkgs.nerd-fonts.jetbrains-mono;
       name = "JetBrainsMono Nerd Font";
-      size = 11;
+      size = 15;
     };
     shellIntegration.enableFishIntegration = true;
+
     settings =
       kittyCommonSettings
       // (if isDarwin then kittyDarwinSettings else { })
