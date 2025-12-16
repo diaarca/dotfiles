@@ -10,6 +10,17 @@
         source ~/.fishrc
       end
 
+      # Dynamically create aliases for git project directories
+      set git_dir "$HOME/Documents/git"
+      if test -d "$git_dir"
+        for dir in "$git_dir"/*
+          if test -d "$dir"
+            set -l alias_name (basename "$dir")
+            alias "$alias_name" "cd $dir"
+          end
+        end
+      end
+
       set fish_greeting # Disable greeting
       if command -q nix-your-shell
         nix-your-shell fish | source

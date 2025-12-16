@@ -21,3 +21,9 @@ wo.relativenumber = true
 
 -- No Fold in Config File
 opt.foldenable = false
+
+if vim.env.HOME then
+  o.shell = vim.env.HOME .. "/.nix-profile/bin/fish"
+else
+  vim.notify("HOME environment variable is not set", vim.log.levels.ERROR)
+end

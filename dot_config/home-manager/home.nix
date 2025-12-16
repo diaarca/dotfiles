@@ -8,12 +8,13 @@
 let
   isLinux = pkgs.stdenv.isLinux;
   isDarwin = pkgs.stdenv.isDarwin;
+  username = builtins.getEnv "USER";
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "dylan";
-  home.homeDirectory = if isLinux then "/home/dylan" else "/Users/dylan";
+  home.username = username;
+  home.homeDirectory = if isLinux then "/home/${username}" else "/Users/${username}";
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
   imports = [

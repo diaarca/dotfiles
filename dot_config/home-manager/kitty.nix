@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 
 let
   # Platform detection
@@ -12,7 +12,7 @@ let
     comfirm_os_window_close = 0;
     hide_window_decorations = "yes";
     copy_on_select = true;
-    shell = "/Users/dylan/.nix-profile/bin/fish";
+    shell = "${config.home.homeDirectory}/.nix-profile/bin/fish";
     "map ctrl+w" = "close_window";
   };
 
