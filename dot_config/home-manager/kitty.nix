@@ -18,7 +18,7 @@ let
     hide_window_decorations = "yes";
     copy_on_select = true;
     shell = "${config.home.homeDirectory}/.nix-profile/bin/fish";
-    "map ctrl+w" = "close_window";
+    "map ctrl+shift+w" = "close_window";
   };
 
   # OS-specific mappings and options
@@ -77,7 +77,6 @@ in
 {
   # Add nixGL to packages only on Linux
   home.packages = lib.mkIf isLinux [
-    # Kitty Utilities
     (import (fetchTarball "https://github.com/nix-community/nixGL/archive/main.tar.gz") { })
     .auto.nixGLDefault
   ];
