@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 let
   # Platform detection
@@ -80,11 +85,9 @@ in
     enable = true;
 
     font = {
-      # if problems with font/size on macOS:
-      # sudo atsutil databases -remove
       package = pkgs.nerd-fonts.jetbrains-mono;
-      name = "JetBrainsMono Nerd Font";
-      size = 15;
+      name = "JetBrainsMono Nerd Font Mono";
+      size = 13;
     };
     shellIntegration.enableFishIntegration = true;
 

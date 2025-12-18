@@ -38,6 +38,13 @@ in
   home.file =
     if isLinux then
       {
+        ".config/fontconfig/conf.d/10-nix-fonts.conf".text = ''
+          <?xml version='1.0'?>
+          <!DOCTYPE fontconfig SYSTEM 'fonts.dtd'>
+          <fontconfig>
+            <dir>~/.nix-profile/share/fonts/</dir>
+          </fontconfig>
+        '';
         ".local/share/applications/kitty.desktop" = {
           text =
             let
