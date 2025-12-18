@@ -77,7 +77,8 @@ in
 {
   # Add nixGL to packages only on Linux
   home.packages = lib.mkIf isLinux [
-    (import (pkgs.fetchTarball "https://github.com/nix-community/nixGL/archive/main.tar.gz") { })
+    # Kitty Utilities
+    (import (fetchTarball "https://github.com/nix-community/nixGL/archive/main.tar.gz") { })
     .auto.nixGLDefault
   ];
 
