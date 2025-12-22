@@ -20,7 +20,7 @@ chezmoi init https://github.com/diaarca/dotfiles.git
 ```bash
 home-manager switch
 ```
-5. You can easily exit the nix-shell environment:
+5. You can now easily exit the nix-shell environment:
 ```bash
 exit
 ```
