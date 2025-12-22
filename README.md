@@ -1,5 +1,5 @@
 # Personnal Chezmoi configuration
-In order to setup this configuration on a brand new machine (both Linux and apple silicon macOS and handled):
+In order to setup this configuration on a brand new machine (both Linux and apple silicon macOS are handled):
 1. Install the `nix` package manager via multi-user installation (recommended):
 ```bash
 sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --daemon
