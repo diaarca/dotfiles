@@ -13,7 +13,7 @@ conform.setup({
         css = { "prettier" },
         bash = { "shfmt" },
         sh = { "shfmt" },
-        tex = { "latexindent" },
+        tex = { "tex-fmt" },
         markdown = { "prettier" },
         nix = { "nixfmt" }
     },

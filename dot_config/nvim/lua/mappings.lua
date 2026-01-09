@@ -334,22 +334,6 @@ local nvim_tree_mappings = {
 }
 
 local lsp_mappings = {
-    -- {
-    --     mode = "i",
-    --     key = "<C-F>",
-    --     cmd = 'copilot#Accept("\\<CR>")',
-    --     opts = {
-    --         desc = "Accept Copilot suggestion",
-    --         expr = true,
-    --         replace_keycodes = false,
-    --     },
-    -- },
-    -- {
-    --     mode = "n",
-    --     key = "<leader>ca",
-    --     cmd = "<cmd>Copilot<CR>",
-    --     opts = { desc = "Ask to Copilot 3 solutions" },
-    -- },
     {
         mode = "n",
         key = "gd",

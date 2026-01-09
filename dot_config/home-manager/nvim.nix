@@ -19,6 +19,7 @@ in
       clang-tools
       pkgs.nodePackages.prettier
       nixfmt-rfc-style
+      tex-fmt
 
       # Highlight
       tree-sitter
@@ -33,6 +34,6 @@ in
       vimPlugins.nvim-treesitter-parsers.latex
       vimPlugins.nvim-treesitter-parsers.markdown
       vimPlugins.nvim-treesitter-parsers.java
-    ] ++ (lib.optional isLinux tex-fmt); # Only include tex-fmt for Linux
+    ];
   };
 }
