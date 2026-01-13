@@ -9,6 +9,7 @@ in
     gcc
     git
     gnumake
+    nix-your-shell
 
     # Dev QoL
     btop # better top
