@@ -13,13 +13,21 @@ in
       fzf # for file finder (<leader>+ff)
       ripgrep # for live grep (<leader>+fw)
 
-      # Format
+      # Format & LSP
       stylua
-      black
-      clang-tools
+
       pkgs.nodePackages.prettier
+      shfmt
+
+      black
+
+      clang-tools
+
+      nixd
       nixfmt-rfc-style
+
       tex-fmt
+      texlab
 
       # Highlight
       tree-sitter
