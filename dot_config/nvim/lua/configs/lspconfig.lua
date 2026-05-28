@@ -1,12 +1,21 @@
 vim.lsp.config("clangd", {
+    cmd = {
+        "clangd",
+        "--background-index",
+        "--clang-tidy",
+        "--header-insertion=never",
+        "--query-driver=/nix/store/*/bin/*,usr/bin/*,/opt/homebrew/bin/*",
+    },
+    root_markers = {
+        ".clangd",
+        ".clang-format",
+        ".git",
+        "compile_commands.json",
+    },
     settings = {
         clangd = {
-            -- Disable automatic include insertion
-            InsertTextMode = 0, -- 0: disabled, 1: only for literals, 2: always
-            -- Do not use fallback flags (let clangd use only compilation database)
+            InsertTextMode = 0,
             FallbackFlags = {},
-            -- Optional: Ensure compilation database is used if available
-            CompilationDatabase = {},
         },
     },
 })

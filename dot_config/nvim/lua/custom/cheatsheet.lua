@@ -194,4 +194,8 @@ function CHS.open()
     )
 end
 
+-- Expose as a global function and command
+_G.DisplayCheatsheet = CHS.open
+vim.api.nvim_create_user_command("DisplayCheatsheet", CHS.open, {})
+
 return CHS

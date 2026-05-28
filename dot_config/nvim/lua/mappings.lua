@@ -79,12 +79,6 @@ local insert_mode_mappings = {
         cmd = "<ESC>",
         opts = { desc = "Exit insert mode" },
     },
-    {
-        mode = "i",
-        key = "<C-R>",
-        cmd = "<C-R>",
-        opts = { desc = "Open registers list" },
-    },
 }
 
 local general_mappings = {
@@ -118,7 +112,6 @@ local general_mappings = {
         cmd = ":",
         opts = { desc = "Enter command mode" },
     },
-    { mode = "n", key = "gx", cmd = "gx", opts = { desc = "Open file link" } },
     {
         mode = "n",
         key = '"',
@@ -130,6 +123,24 @@ local general_mappings = {
         key = "#",
         cmd = "#",
         opts = { desc = "Search for next occurence" },
+    },
+    {
+        mode = "n",
+        key = "ge",
+        cmd = "<cmd>OpenLink<cr>",
+        opts = { desc = "Open the link under the cursor" },
+    },
+    {
+        mode = "n",
+        key = "<leader>ip",
+        cmd = "<cmd>PasteImage<cr>",
+        opts = { desc = "Paste image from clipboard" },
+    },
+    {
+        mode = "n",
+        key = "<leader>bf",
+        cmd = ":BibFetch ",
+        opts = { desc = "Fetch BibTeX from DOI" },
     },
 }
 
@@ -149,7 +160,7 @@ local toggle_mappings = {
     {
         mode = "n",
         key = "<leader>ch",
-        cmd = "<cmd>lua require('custom.cheatsheet').open()<CR>",
+        cmd = "<cmd>DisplayCheatsheet<CR>",
         opts = { desc = "Toggle Cheatsheet" },
     },
     {
@@ -184,9 +195,9 @@ local toggle_mappings = {
     },
     {
         mode = "n",
-        key = "<leader>cp",
-        cmd = "<cmd>lua require('custom.copilot').toggle()<CR>",
-        opts = { desc = "Toggle Copilot" },
+        key = "za",
+        cmd = "za",
+        opts = { desc = "Toogle context folding" },
     },
 }
 

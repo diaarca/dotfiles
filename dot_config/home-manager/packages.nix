@@ -7,8 +7,9 @@ in
   home.packages = with pkgs; [
     # Dev
     gcc
-    git
     gnumake
+    lua51Packages.luarocks
+    lua5_1
     nix-your-shell
 
     # Dev QoL
@@ -18,6 +19,7 @@ in
 
     # Utilities
     chezmoi
+    imagemagick
 
     # Others
     discord

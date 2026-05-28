@@ -14,8 +14,9 @@ conform.setup({
         bash = { "shfmt" },
         sh = { "shfmt" },
         tex = { "tex-fmt" },
+        bib = { "bibtex-tidy" },
         markdown = { "prettier" },
-        nix = { "nixfmt" }
+        nix = { "nixfmt" },
     },
 
     formatters = {
@@ -36,6 +37,41 @@ conform.setup({
                 "-",
             },
             timeout_ms = 5000,
+        },
+        ["bibtex-tidy"] = {
+            command = "bibtex-tidy",
+            args = {
+                "--tab",
+                "--blank-lines",
+                "--curly",
+                "--wrap=75",
+                "--no-align",
+            },
+            timeout_ms = 5000,
+        },
+        prettier = {
+            command = "prettier",
+            args = {
+                "--print-width",
+                "80",
+                "--prose-wrap",
+                "always",
+                "--stdin-filepath",
+                "$FILENAME",
+            },
+            stdin = true,
+            timeout_ms = 5000,
+        },
+        ["tex-fmt"] = {
+            command = "tex-fmt",
+            args = {
+                "--wraplen",
+                "80",
+                "--tabsize",
+                "1",
+                "--usetabs",
+                "--stdin",
+            },
         },
     },
 })

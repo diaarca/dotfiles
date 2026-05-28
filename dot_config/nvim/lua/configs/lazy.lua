@@ -3,6 +3,10 @@ return {
     install = { colorscheme = { "nvchad" } },
     checker = { enabled = true },
 
+    rocks = {
+        hererocks = false,
+    },
+
     ui = {
         icons = {
             ft = "",

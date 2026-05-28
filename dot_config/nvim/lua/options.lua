@@ -16,12 +16,14 @@ opt.expandtab = true
 o.tabstop = 4
 o.shiftwidth = 4
 
--- Relative Numbers
+-- Relative numbers
 wo.relativenumber = true
 
--- No Fold in Config File
-opt.foldenable = false
+-- Contex folding
+opt.foldmethod = "syntax"
+opt.foldlevelstart = 99
 
+-- Having fish in inner terminal
 if vim.env.HOME then
   o.shell = vim.env.HOME .. "/.nix-profile/bin/fish"
 else

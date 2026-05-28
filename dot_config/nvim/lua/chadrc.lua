@@ -1,7 +1,7 @@
 local M = {}
 
 M.base46 = {
-	theme = "bearded-arc",
+	theme = "github_light",
 }
 
 return M

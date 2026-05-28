@@ -1,4 +1,6 @@
 require("options")
+require("custom.bibtex_fetch")
+require("custom.cheatsheet")
 
 return {
     -- AESTHETIC FEATURES
@@ -6,44 +8,55 @@ return {
     {
         "MeanderingProgrammer/render-markdown.nvim",
         dependencies = {
-            "nvim-treesitter/nvim-treesitter",
             "nvim-tree/nvim-web-devicons",
         },
         lazy = false,
         ---@module 'render-markdown'
         ---@type render.md.UserConfig
-        opts = {},
+        config = function()
+            require("configs.render-markdown")
+        end,
+    },
+    -- Image Rendering
+    {
+        "3rd/image.nvim",
+        build = false,
+        lazy = false,
+        config = function()
+            require("configs.image")
+        end,
     },
     -- Code coloration plugin
     {
         "nvim-treesitter/nvim-treesitter",
-        opts = {
-            ensure_installed = {
-                "vim",
-                "lua",
-                "vimdoc",
-                "python",
-                "bash",
-                "c",
-                "cpp",
-                "latex",
-                "java",
-                "javascript",
-            },
-        },
+        config = function()
+            require("configs.treesitter")
+        end,
     },
     -- Embedded context display plugin
     {
         "nvim-treesitter/nvim-treesitter-context",
         event = { "BufNewFile", "BufReadPost" },
-        opts = { mode = "topline", max_lines = 5 },
+        config = function()
+            require("configs.treesitter-context")
+        end,
     },
     -- LSP server installer plugin
     {
         "williamboman/mason.nvim",
-        automatic_installation = true,
+        config = function()
+            require("configs.mason")
+        end,
     },
-    
+    -- Automatic switch between dark and light theme
+    {
+        "f-person/auto-dark-mode.nvim",
+        lazy = false,
+        config = function()
+            require("configs.auto-dark-mode")
+        end,
+    },
+
     -- IMPROVEMENT CODE FEATURES
     -- LSP server plugin for jumps, rename and autocomplete
     {
@@ -56,9 +69,40 @@ return {
     -- Code formatters plugin
     {
         "stevearc/conform.nvim",
-        lazy = false, -- Ensure it's not loaded lazily
+        lazy = false,
         config = function()
             require("configs.conform")
         end,
+    },
+    {
+        "elentok/open-link.nvim",
+        lazy = false,
+        config = function()
+            require("configs.open-link")
+        end,
+    },
+    -- Image Pasting
+    {
+        "HakonHarnes/img-clip.nvim",
+        event = "VeryLazy",
+        config = function()
+            require("configs.img-clip")
+        end,
+    },
+
+    -- BIBLIOGRAPHY & LATEX FEATURES
+    -- Telescope BibTeX: For fuzzy finding standard .bib files
+    {
+        "nvim-telescope/telescope-bibtex.nvim",
+        dependencies = {
+            "nvim-telescope/telescope.nvim",
+        },
+        config = function()
+            require("configs.telescope-bibtex")
+        end,
+    },
+    -- cmp-vimtex: Autocompletion source for citations
+    {
+        "micangl/cmp-vimtex",
     },
 }
