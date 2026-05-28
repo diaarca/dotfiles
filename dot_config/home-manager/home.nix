@@ -11,18 +11,18 @@ let
   username = builtins.getEnv "USER";
 in
 {
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
   home.username = username;
   home.homeDirectory = if isLinux then "/home/${username}" else "/Users/${username}";
-  home.stateVersion = "24.05"; # Please read the comment before changing.
+  home.stateVersion = "24.05";
 
   imports = [
     ./packages.nix
     ./nvim.nix
     ./fish.nix
     ./kitty.nix
+    ./git.nix
     ./aliases.nix
+    ./direnv.nix
     ./vivaldi.nix
   ];
 
@@ -31,8 +31,8 @@ in
     EDITOR = "nvim";
     VISUAL = "nvim";
     TERMINAL = "kitty";
-    # Ensure core Nix paths are always included by Home Manager
-    PATH = "$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$PATH";
+    # ensure core nix paths are always included by home manager
+    PATH = "$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$HOME/.local/bin:$PATH";
   };
 
   home.file =
