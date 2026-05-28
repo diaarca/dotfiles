@@ -14,9 +14,10 @@ let
   kittyCommonSettings = {
     os_window_state = "maximized";
     placement_strategy = "top-left";
-    comfirm_os_window_close = 0;
+    confirm_os_window_close = 0;
     hide_window_decorations = "yes";
     copy_on_select = true;
+    enabled_layouts = "tall,horizontal,vertical,fat,stack";
     shell = "${config.home.homeDirectory}/.nix-profile/bin/fish";
     "map ctrl+shift+w" = "close_window";
   };
@@ -87,7 +88,7 @@ in
     font = {
       package = pkgs.nerd-fonts.jetbrains-mono;
       name = "JetBrainsMono Nerd Font Mono";
-      size = 13;
+      size = 14;
     };
     shellIntegration.enableFishIntegration = true;
 
@@ -96,4 +97,18 @@ in
       // (if isDarwin then kittyDarwinSettings else { })
       // (if isLinux then kittyLinuxSettings else { });
   };
+
+  xdg.configFile."kitty/dark-theme.auto.conf".text = builtins.readFile (
+    pkgs.fetchurl {
+      url = "https://raw.githubusercontent.com/kovidgoyal/kitty-themes/master/themes/GitHub_Dark.conf";
+      sha256 = "sha256-23D48bQgQJjcRk6kfD3lBxaXvWzCxPnTYGjDDdluuCQ=";
+    }
+  );
+
+  xdg.configFile."kitty/light-theme.auto.conf".text = builtins.readFile (
+    pkgs.fetchurl {
+      url = "https://raw.githubusercontent.com/kovidgoyal/kitty-themes/master/themes/GitHub_Light.conf";
+      sha256 = "sha256-AtxguOM3Cfyvco2uyFiCA57OcVab/B5ch1cYGySdzpw=";
+    }
+  );
 }
