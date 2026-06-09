@@ -1,6 +1,7 @@
 require("options")
 require("custom.bibtex_fetch")
 require("custom.cheatsheet")
+require("custom.latex_merge_block")
 
 return {
     -- AESTHETIC FEATURES
@@ -88,6 +89,10 @@ return {
         config = function()
             require("configs.img-clip")
         end,
+    },
+    {
+        "VPavliashvili/json-nvim",
+        ft = "json",
     },
 
     -- BIBLIOGRAPHY & LATEX FEATURES

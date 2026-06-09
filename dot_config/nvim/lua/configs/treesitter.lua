@@ -10,5 +10,6 @@ require("nvim-treesitter.configs").setup({
         "latex",
         "java",
         "javascript",
+        "json",
     },
 })

@@ -142,6 +142,12 @@ local general_mappings = {
         cmd = ":BibFetch ",
         opts = { desc = "Fetch BibTeX from DOI" },
     },
+    {
+        mode = "n",
+        key = "<leader>lm",
+        cmd = "<cmd>LatexMergeBlock<CR>",
+        opts = { desc = "Merge LaTeX text block" },
+    },
 }
 
 local toggle_mappings = {

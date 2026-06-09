@@ -35,6 +35,7 @@ in
         nixfmt-rfc-style
         tex-fmt
         bibtex-tidy
+        jq
 
         # Highlight
         tree-sitter
