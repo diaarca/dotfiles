@@ -90,9 +90,18 @@ return {
             require("configs.img-clip")
         end,
     },
+    -- Json Formatter
     {
         "VPavliashvili/json-nvim",
         ft = "json",
+    },
+    -- Local Autocompletion
+    {
+        "supermaven-inc/supermaven-nvim",
+        lazy = false,
+        config = function()
+            require("configs.supermaven")
+        end,
     },
 
     -- BIBLIOGRAPHY & LATEX FEATURES

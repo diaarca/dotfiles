@@ -35,11 +35,13 @@ in
         nixfmt-rfc-style
         tex-fmt
         bibtex-tidy
-        jq
+        typstyle
+        jsonfmt
 
         # Highlight
         tree-sitter
         nodejs
+        vimPlugins.supermaven-nvim
         vimPlugins.nvim-treesitter-parsers.vim
         vimPlugins.nvim-treesitter-parsers.lua
         vimPlugins.nvim-treesitter-parsers.vimdoc
@@ -50,6 +52,7 @@ in
         vimPlugins.nvim-treesitter-parsers.latex
         vimPlugins.nvim-treesitter-parsers.markdown
         vimPlugins.nvim-treesitter-parsers.java
+        vimPlugins.nvim-treesitter-parsers.typst
       ]);
   };
 }

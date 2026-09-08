@@ -17,6 +17,8 @@ conform.setup({
         bib = { "bibtex-tidy" },
         markdown = { "prettier" },
         nix = { "nixfmt" },
+        typst = { "typstyle" },
+        json = { "jsonfmt" },
     },
 
     formatters = {
@@ -72,6 +74,11 @@ conform.setup({
                 "--usetabs",
                 "--stdin",
             },
+        },
+        jsonfmt = {
+            command = "jsonfmt",
+            args = { "--write" },
+            stdin = true,
         },
     },
 })
