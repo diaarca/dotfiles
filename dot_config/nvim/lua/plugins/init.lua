@@ -3,6 +3,8 @@ require("custom.bibtex_fetch")
 require("custom.cheatsheet")
 require("custom.latex_merge_block")
 
+local use_treesitter_main = vim.fn.has("nvim-0.12") == 1
+
 return {
     -- AESTHETIC FEATURES
     -- Rendering Markdown plugin
@@ -30,8 +32,23 @@ return {
     -- Code coloration plugin
     {
         "nvim-treesitter/nvim-treesitter",
-        config = function()
-            require("configs.treesitter")
+        branch = use_treesitter_main and "main" or "master",
+        commit = use_treesitter_main
+                and "29212d826054bb2948fa9d3a99eca9bf6a050eb2"
+            or "cf12346a3414fa1b06af75c79faebe7f76df080a",
+        lazy = not use_treesitter_main,
+        build = ":TSUpdate",
+        opts = function()
+            return require("configs.treesitter")
+        end,
+        config = function(_, opts)
+            if use_treesitter_main then
+                local treesitter = require("nvim-treesitter")
+                treesitter.setup()
+                treesitter.install(opts.ensure_installed)
+            else
+                require("nvim-treesitter.configs").setup(opts)
+            end
         end,
     },
     -- Embedded context display plugin

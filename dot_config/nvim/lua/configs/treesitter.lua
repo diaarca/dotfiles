@@ -1,4 +1,4 @@
-require("nvim-treesitter.configs").setup({
+return {
     ensure_installed = {
         "vim",
         "lua",
@@ -11,5 +11,7 @@ require("nvim-treesitter.configs").setup({
         "java",
         "javascript",
         "json",
+        "markdown",
+        "markdown_inline",
     },
-})
+}

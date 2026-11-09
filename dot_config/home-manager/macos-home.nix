@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   lib,
   user,
@@ -11,7 +12,10 @@
   # Keep the shared, channel-based Linux configuration independent of this flake.
   home.username = lib.mkForce user.username;
   home.homeDirectory = lib.mkForce user.homeDirectory;
-  home.packages = [ pkgs.rectangle ];
+  home.packages = [
+    pkgs.rectangle
+  ]
+  ++ lib.optional config.submoduleSupport.enable config.programs.home-manager.package;
 
   # Chezmoi owns init.lua; load Home Manager's generated initialization in the wrapper.
   programs.neovim.sideloadInitLua = true;

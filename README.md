@@ -12,13 +12,28 @@ Install multi-user Nix using the current instructions for your platform:
 The macOS configuration assumes upstream Nix; Determinate Nix requires different
 integration. Then fetch and apply the dotfiles:
 
+On a fresh macOS installation, install upstream Nix from Terminal:
+
 ```sh
-nix-shell -p chezmoi home-manager
+curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install | sh
+```
+
+Open a new Terminal after the installer finishes. Run the remaining commands as
+your regular user, using `sudo` only where shown. For a VM rehearsal, run them
+inside the guest. Start a temporary shell with the bootstrap tools and keep it
+open through the first Home Manager activation:
+
+```sh
+nix-shell -p git chezmoi home-manager
+export NIX_CONFIG="experimental-features = nix-command flakes"
 chezmoi init --apply https://github.com/diaarca/dotfiles.git
 ```
 
-The encrypted SSH material requires the existing age identity/bootstrap process.
-Keep that recovery material separately from this repository.
+The temporary flakes setting is needed before Home Manager writes the user's
+Nix configuration. Git is provided by Nix for the initial repository clone.
+The key bootstrap script prompts for the passphrase protecting `key.txt.age`
+when the age identity is missing, then restores the encrypted SSH files. Keep
+that passphrase/recovery material separately from this repository.
 
 ## Linux
 
@@ -116,3 +131,14 @@ and retain licenses and recovery credentials separately.
 Nix retains package generations for rollback and can consume significant disk
 space. Review unused generations before garbage collection; this configuration
 does not automatically delete them or other user data.
+
+For a recovery rehearsal, start with a fresh Apple Silicon macOS VM, create an
+administrator account such as `vmtest`, and follow Bootstrap and macOS above.
+Do not migrate the host's home directory or update `flake.lock` during the test.
+After activation, reboot the guest, check the applications and visible settings,
+and run `darwin-rebuild switch` again. Test restoring important files from Time
+Machine separately before resetting the physical Mac.
+
+Use `nix build` for validation without activation. In the pinned nix-darwin
+version, `darwin-rebuild check` can apply system changes because its check flag
+is lost when the activation script clears its environment.
