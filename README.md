@@ -45,10 +45,12 @@ Build the complete configuration without activating it:
 nix build "path:$HOME/.config/home-manager#darwinConfigurations.macbook.system" --no-link
 ```
 
-For the first system activation, use the rebuild tool from the same lock file:
+Standalone macOS Home Manager installs `darwin-rebuild` from the same lock file.
+Apply the user configuration first, then activate the system configuration:
 
 ```sh
-sudo nix run "path:$HOME/.config/home-manager#darwin-rebuild" -- switch \
+home-manager switch
+sudo "$HOME/.nix-profile/bin/darwin-rebuild" switch \
   --flake "path:$HOME/.config/home-manager#macbook"
 ```
 
@@ -58,9 +60,9 @@ Subsequent system and Home Manager changes are applied together:
 sudo darwin-rebuild switch --flake "path:$HOME/.config/home-manager#macbook"
 ```
 
-Before adopting nix-darwin, the standalone macOS Home Manager configuration can
-also be built/applied with `home-manager build` / `home-manager switch`. Once
-nix-darwin is managing the machine, use `darwin-rebuild` to keep the two in sync.
+`home-manager switch` applies only the user configuration. Once nix-darwin is
+managing the machine, use `darwin-rebuild` to apply system and user changes
+together; nix-darwin itself provides the rebuild tool in that setup.
 Keep `home.stateVersion` and `system.stateVersion` unchanged when updating inputs.
 To update the lock deliberately:
 

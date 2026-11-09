@@ -28,7 +28,12 @@
           system = "aarch64-darwin";
           config.allowUnfree = true;
         };
-        modules = [ ./macos-home.nix ];
+        modules = [
+          ./macos-home.nix
+          {
+            home.packages = [ nix-darwin.packages.aarch64-darwin.darwin-rebuild ];
+          }
+        ];
       };
 
       darwinConfigurations.macbook = nix-darwin.lib.darwinSystem {
