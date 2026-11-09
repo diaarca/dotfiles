@@ -1,6 +1,6 @@
 { pkgs, lib, ... }: # Make sure lib is available
 
-lib.mkIf pkgs.stdenv.isLinux {
+lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
   # All the Vivaldi-related configuration goes inside here
   programs.vivaldi = {
     enable = true;

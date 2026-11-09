@@ -3,3 +3,11 @@ key.txt.age
 dot_config/nvim/lazy-lock.json
 setup-scripts/
 flakes/
+{{ if ne .chezmoi.os "darwin" }}
+.config/home-manager/flake.nix
+.config/home-manager/flake.lock
+.config/home-manager/darwin.nix
+.config/home-manager/macos-home.nix
+.config/home-manager/macos-defaults.nix
+.config/home-manager/macos-shortcuts.json
+{{ end }}

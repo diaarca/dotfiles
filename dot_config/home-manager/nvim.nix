@@ -1,14 +1,15 @@
 { pkgs, lib, ... }: # Add lib here
 
 let
-  isLinux = pkgs.stdenv.isLinux;
-  isDarwin = pkgs.stdenv.isDarwin;
+  isLinux = pkgs.stdenv.hostPlatform.isLinux;
+  isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
 in
 {
   programs.neovim = {
     enable = true;
     vimAlias = true;
     withPython3 = true;
+    withRuby = true;
     extraPackages =
       with pkgs;
       [
@@ -31,8 +32,8 @@ in
         stylua
         black
         clang-tools
-        pkgs.nodePackages.prettier
-        nixfmt-rfc-style
+        prettier
+        nixfmt
         tex-fmt
         bibtex-tidy
         typstyle
