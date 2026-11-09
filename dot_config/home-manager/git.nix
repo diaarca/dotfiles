@@ -63,4 +63,9 @@ in
       };
     };
   };
+
+  # github cli tool for terminal pull requests
+  programs.gh = {
+      enable = true;
+  };
 }
