@@ -10,4 +10,5 @@ flakes/
 .config/home-manager/macos-home.nix
 .config/home-manager/macos-defaults.nix
 .config/home-manager/macos-shortcuts.json
+.config/home-manager/user.json
 {{ end }}

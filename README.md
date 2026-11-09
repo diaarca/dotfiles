@@ -35,9 +35,13 @@ nixGL import remains unpinned; this change only introduces a locked macOS setup.
 
 ## macOS
 
-The flake targets the `dylan` account on `aarch64-darwin`. Review `darwin.nix`,
-`macos-home.nix`, and `macos-defaults.nix` before adapting it to another Mac.
-`flake.lock` pins Nixpkgs, Home Manager, and nix-darwin.
+The flake targets Apple Silicon (`aarch64-darwin`). Chezmoi renders `user.json`
+with the deploying user's username and actual home directory. Run chezmoi as
+your regular user; the generated identity stays the same when rebuilding with
+`sudo`, without requiring impure Nix evaluation. The standalone Home Manager
+profile is named after that username; the system profile remains `macbook`.
+Review the saved preferences before adapting them to another Mac. `flake.lock`
+pins Nixpkgs, Home Manager, and nix-darwin.
 
 Build the complete configuration without activating it:
 
@@ -70,9 +74,10 @@ To update the lock deliberately:
 nix flake update --flake "path:$HOME/.config/home-manager"
 ```
 
-Copy changes made here to the live configuration with chezmoi before rebuilding.
-Alternatively, use `path:./dot_config/home-manager` from this repository in place
-of `path:$HOME/.config/home-manager` in the commands above.
+Copy changes made here to the live configuration with
+`chezmoi apply ~/.config/home-manager` before rebuilding. Build from the deployed
+directory: the source repository contains `user.json.tmpl`, which chezmoi must
+render to `user.json` first.
 
 The captured preferences include Dock placement and pinned apps, Finder, keyboard
 repeat and text input, language/region, trackpad gestures, clock, Stage Manager,

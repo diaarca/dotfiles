@@ -1,11 +1,16 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  user,
+  ...
+}:
 
 {
   imports = [ ./home.nix ];
 
   # Keep the shared, channel-based Linux configuration independent of this flake.
-  home.username = lib.mkForce "dylan";
-  home.homeDirectory = lib.mkForce "/Users/dylan";
+  home.username = lib.mkForce user.username;
+  home.homeDirectory = lib.mkForce user.homeDirectory;
   home.packages = [ pkgs.rectangle ];
 
   # Chezmoi owns init.lua; load Home Manager's generated initialization in the wrapper.

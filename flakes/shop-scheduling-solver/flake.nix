@@ -127,7 +127,7 @@
             ];
 
           shellHook = ''
-            export ORTOOLSDIR="/Users/dylan/OR-TOOLS/or-tools_arm64_macOS-15.3.1_cpp_v9.12.4544"
+            export ORTOOLSDIR="$HOME/OR-TOOLS/or-tools_arm64_macOS-15.3.1_cpp_v9.12.4544"
             export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:$ORTOOLSDIR/lib"
             npm install
 

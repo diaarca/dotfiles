@@ -5,7 +5,7 @@
 
 set -euo pipefail
 
-NIX_FISH_PATH="/Users/dylan/.nix-profile/bin/fish"
+NIX_FISH_PATH="$HOME/.nix-profile/bin/fish"
 
 # --- Dependency Check ---
 if ! [ -x "${NIX_FISH_PATH}" ]; then
