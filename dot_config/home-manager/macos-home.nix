@@ -7,7 +7,10 @@
 }:
 
 {
-  imports = [ ./home.nix ];
+  imports = [
+    ./home.nix
+    ./macos-apps.nix
+  ];
 
   # Keep the shared, channel-based Linux configuration independent of this flake.
   home.username = lib.mkForce user.username;

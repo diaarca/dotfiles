@@ -8,6 +8,9 @@ flakes/
 .config/home-manager/flake.lock
 .config/home-manager/darwin.nix
 .config/home-manager/macos-home.nix
+.config/home-manager/macos-apps.nix
+.config/home-manager/packages
+.config/nextdns
 .config/home-manager/macos-defaults.nix
 .config/home-manager/macos-shortcuts.json
 .config/home-manager/user.json

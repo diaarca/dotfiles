@@ -24,5 +24,6 @@ in
 
     # Others
     discord
+    obsidian
   ];
 }
