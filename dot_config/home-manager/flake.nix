@@ -23,8 +23,7 @@
     let
       user = builtins.fromJSON (builtins.readFile ./user.json);
 
-      # Keep upstream's installation logic while replacing its deprecated Nix alias.
-      profileAddFix =
+      homeManagerSupport =
         {
           config,
           lib,
@@ -37,6 +36,10 @@
           };
         in
         {
+          # CLI helpers such as news must use the locked source, without a channel.
+          programs.home-manager.path = toString home-manager;
+
+          # Keep upstream's installation logic while replacing its deprecated Nix alias.
           home.activation.installPackages = lib.mkForce (
             upstream.config.home.activation.installPackages
             // {
@@ -49,6 +52,11 @@
     in
     {
       packages.aarch64-darwin.darwin-rebuild = nix-darwin.packages.aarch64-darwin.darwin-rebuild;
+      packages.aarch64-darwin.home-manager =
+        (import nixpkgs { system = "aarch64-darwin"; }).callPackage "${home-manager}/home-manager"
+          {
+            path = toString home-manager;
+          };
 
       homeConfigurations.${user.username} = home-manager.lib.homeManagerConfiguration {
         extraSpecialArgs = { inherit user; };
@@ -58,7 +66,7 @@
         };
         modules = [
           ./macos-home.nix
-          profileAddFix
+          homeManagerSupport
           {
             home.packages = [ nix-darwin.packages.aarch64-darwin.darwin-rebuild ];
           }
@@ -70,7 +78,7 @@
         modules = [
           home-manager.darwinModules.home-manager
           ./darwin.nix
-          { home-manager.sharedModules = [ profileAddFix ]; }
+          { home-manager.sharedModules = [ homeManagerSupport ]; }
         ];
       };
     };

@@ -63,10 +63,12 @@ nix build "path:$HOME/.config/home-manager#darwinConfigurations.macbook.system" 
 ```
 
 Standalone macOS Home Manager installs `darwin-rebuild` from the same lock file.
-Apply the user configuration first:
+Apply the user configuration first using the locked Home Manager CLI. This also
+works in the temporary bootstrap shell without a Home Manager channel:
 
 ```sh
-home-manager switch
+nix run "path:$HOME/.config/home-manager#home-manager" -- switch \
+  --flake "path:$HOME/.config/home-manager"
 ```
 
 After the first successful activation, open a new Terminal window so the shell
@@ -79,11 +81,13 @@ sudo "$HOME/.nix-profile/bin/darwin-rebuild" switch \
 ```
 
 After this first nix-darwin activation, open another new Terminal window to load
-the system environment, which makes `darwin-rebuild` available by name.
-Subsequent system and Home Manager changes are applied together:
+the system environment. Subsequent system and Home Manager changes are applied
+together using the system tool's explicit path, which also works when `sudo`
+does not include Nix directories in its search path:
 
 ```sh
-sudo darwin-rebuild switch --flake "path:$HOME/.config/home-manager#macbook"
+sudo /run/current-system/sw/bin/darwin-rebuild switch \
+  --flake "path:$HOME/.config/home-manager#macbook"
 ```
 
 `home-manager switch` applies only the user configuration. Once nix-darwin is
@@ -120,6 +124,12 @@ before rebuilding; running apps are skipped with a message. KeepingYouAwake
 starts inactive and keeps the display awake during an active session, matching
 the corresponding saved Amphetamine preferences. Its features are not identical
 to Amphetamine, particularly for closed-display use.
+
+In the UTM macOS rehearsal, Kitty failed with `NSGL: Failed to find a suitable
+pixel format`, including with `--config NONE` and `/bin/zsh -f`. This indicates
+that the guest could not create the required OpenGL context. Use Apple's Terminal
+for the remaining VM checks and test Kitty on the physical Mac; changing Fish or
+Kitty preferences does not address this graphics failure.
 
 Obsidian settings and plugins belong to each vault's `.obsidian` directory;
 restore that directory with the vault. Browser profiles, bookmarks, passwords,

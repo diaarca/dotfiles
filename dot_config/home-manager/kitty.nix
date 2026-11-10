@@ -12,7 +12,6 @@ let
 
   # Common settings
   kittyCommonSettings = {
-    os_window_state = "maximized";
     placement_strategy = "top-left";
     confirm_os_window_close = 0;
     hide_window_decorations = "yes";
