@@ -17,6 +17,7 @@ in
 
   imports = [
     ./packages.nix
+    ./codex.nix
     ./nvim.nix
     ./fish.nix
     ./kitty.nix

@@ -6,6 +6,7 @@ in
 {
   home.packages = with pkgs; [
     # Dev
+    codex
     gcc
     gnumake
     lua51Packages.luarocks
