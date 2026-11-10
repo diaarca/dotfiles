@@ -73,6 +73,7 @@ in
             minimized = 0;
           };
           tabs = {
+            bar.position = 1;
             defer_loading_after_restore = false;
             visible = true;
           };

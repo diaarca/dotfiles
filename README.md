@@ -100,60 +100,6 @@ To update the lock deliberately:
 nix flake update --flake "path:$HOME/.config/home-manager"
 ```
 
-## Desktop applications
-
-Home Manager installs Discord, Vivaldi, Kitty, and Obsidian on Linux and macOS.
-macOS also gets Rectangle, KeepingYouAwake (the Amphetamine replacement), and
-the NextDNS menu-bar app. Vivaldi and NextDNS use local Nix packages with pinned
-official downloads and hashes in `dot_config/home-manager/packages`; they do not
-require Homebrew. NextDNS 2.1.4 requires macOS 15.6 or later. Update those package
-versions and hashes explicitly when upgrading them.
-
-On macOS, `macos-apps.nix` enables Home Manager's `copyApps` support. It copies
-real app bundles into `~/Applications/Home Manager Apps`, registers them with
-Launch Services, and requests Spotlight indexing. Keep this directory dedicated
-to Home Manager: activation synchronizes its contents and removes unmanaged apps
-inside it. Existing apps in `/Applications` are left alone. If macOS requests App
-Management permission, grant it to the terminal used for the rebuild under
-System Settings → Privacy & Security → App Management, then rerun the rebuild.
-
-After installation, start Rectangle with
-`open "$HOME/Applications/Home Manager Apps/Rectangle.app"`, grant Accessibility
-permission, and enable **Launch on login** in its preferences. It runs in the
-menu bar; test window snapping with **Control–Option–Left/Right**.
-
-Kitty retains its existing settings. `desktop-apps.nix` merges selected Vivaldi
-interface/download preferences and Discord's background, hardware acceleration,
-and host-update settings into writable files on both platforms. Quit those apps
-before rebuilding; running apps are skipped with a message. KeepingYouAwake
-starts inactive and keeps the display awake during an active session, matching
-the corresponding saved Amphetamine preferences. Its features are not identical
-to Amphetamine, particularly for closed-display use.
-
-In the UTM macOS rehearsal, Kitty failed with `NSGL: Failed to find a suitable
-pixel format`, including with `--config NONE` and `/bin/zsh -f`. This indicates
-that the guest could not create the required OpenGL context. Use Apple's Terminal
-for the remaining VM checks and test Kitty on the physical Mac; changing Fish or
-Kitty preferences does not address this graphics failure.
-
-Obsidian settings and plugins belong to each vault's `.obsidian` directory;
-restore that directory with the vault. Browser profiles, bookmarks, passwords,
-and Discord authentication are not copied by these modules. Your existing
-NextDNS profile ID, device-name reporting, and login preference are backed up as
-an encrypted chezmoi file, restored to `~/.config/nextdns/preferences.json` only
-on macOS. Enter the saved `config` value in NextDNS's profile setup and review
-the other two settings in its UI. Approve macOS DNS access when prompted; the
-configuration does not enable DNS filtering or replace network permissions.
-
-To test Spotlight after applying and rebuilding, quit an existing app such as
-Discord and rename `/Applications/Discord.app` to `Discord.app.before-nix` in
-Finder. The backup name deliberately does not end in `.app`. Search for Discord
-in Spotlight and use Command–Return to reveal the selected result in Finder;
-verify it points inside `~/Applications/Home Manager Apps` before launching it.
-Indexing can take a little time. If the app is missing, check that this directory
-is not excluded under Spotlight's Search Privacy settings. Restore the original
-filename afterward if you want to keep the previous installation available.
-
 ## Recovery and storage
 
 Keep a verified Time Machine backup before resetting the Mac. This repository
