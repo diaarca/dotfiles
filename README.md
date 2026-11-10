@@ -108,18 +108,13 @@ KeepingYouAwake, and NextDNS are enabled only on macOS. Obsidian has no declared
 settings and stays in `packages.nix`. Shared macOS app copying and Spotlight
 registration live in `macos-apps.nix`.
 
+Rectangle, KeepingYouAwake, and NextDNS open at graphical login through Home
+Manager launch agents. NextDNS still needs its profile and macOS DNS permission.
+
 Quit Vivaldi and Discord before rebuilding to apply their saved preferences.
 Vivaldi is the default browser on Linux; macOS activation requests the same and
 may require confirmation. If it remains unchanged, select Vivaldi in System
 Settings → Desktop & Dock → Default web browser.
-
-Menu-bar preferences are captured in `macos-menu-bar.json` and applied by
-`macos-menu-bar.nix`: appearance, clock, named icon visibility/positions, and
-Control Center layouts. Log out and back in after rebuilding. Private layout
-archives are restored only on the captured macOS major version; icon positions
-can still vary with displays. Wallpaper and app availability also affect the
-result. Runtime tokens, display IDs, unidentified Control Center/SystemUIServer
-icon slots, and customization history are excluded.
 
 ## Recovery and storage
 

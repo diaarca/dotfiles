@@ -15,6 +15,7 @@
       "NSAutomaticPeriodSubstitutionEnabled" = false;
       "NSAutomaticQuoteSubstitutionEnabled" = true;
       "NSAutomaticSpellingCorrectionEnabled" = false;
+      "_HIHideMenuBar" = false;
       "com.apple.keyboard.fnState" = true;
       "com.apple.sound.beep.volume" = 0.0;
       "com.apple.springing.delay" = 0.6000000000000001;
@@ -83,6 +84,15 @@
       "TrackpadTwoFingerFromRightEdgeSwipeGesture" = 3;
     };
 
+    menuExtraClock = {
+      "FlashDateSeparators" = false;
+      "IsAnalog" = false;
+      "ShowAMPM" = true;
+      "ShowDate" = 0;
+      "ShowDayOfWeek" = true;
+      "ShowSeconds" = false;
+    };
+
     WindowManager = {
       "AppWindowGroupingBehavior" = true;
       "AutoHide" = false;
@@ -96,16 +106,20 @@
     universalaccess = {
       "closeViewScrollWheelToggle" = true;
       "mouseDriverCursorSize" = 1.0;
+      "reduceTransparency" = false;
     };
 
     CustomUserPreferences = {
       "NSGlobalDomain" = {
         "AppleActionOnDoubleClick" = "Maximize";
+        "AppleAquaColorVariant" = 1;
+        "AppleICUForce12HourTime" = true;
         "AppleLanguages" = [
           "en-US"
           "fr-FR"
         ];
         "AppleLocale" = "en_US@rg=frzzzz";
+        "AppleMenuBarVisibleInFullscreen" = false;
         "AppleMiniaturizeOnDoubleClick" = false;
         "NSAutomaticTextCompletionEnabled" = true;
         "NSSpellCheckerAutomaticallyIdentifiesLanguages" = true;

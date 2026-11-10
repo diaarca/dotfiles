@@ -1,10 +1,7 @@
 { user, ... }:
 
 {
-  imports = [
-    ./macos-defaults.nix
-    ./macos-menu-bar.nix
-  ];
+  imports = [ ./macos-defaults.nix ];
 
   nixpkgs.hostPlatform = "aarch64-darwin";
   nixpkgs.config.allowUnfree = true;
