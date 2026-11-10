@@ -17,7 +17,10 @@ in
 
   imports = [
     ./packages.nix
-    ./desktop-apps.nix
+    ./discord.nix
+    ./rectangle.nix
+    ./keepingyouawake.nix
+    ./nextdns.nix
     ./codex.nix
     ./nvim.nix
     ./fish.nix

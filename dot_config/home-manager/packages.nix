@@ -1,8 +1,5 @@
 { pkgs, ... }:
 
-let
-  isLinux = pkgs.stdenv.hostPlatform.isLinux;
-in
 {
   home.packages = with pkgs; [
     # Dev
@@ -23,7 +20,6 @@ in
     imagemagick
 
     # Others
-    discord
     obsidian
   ];
 }

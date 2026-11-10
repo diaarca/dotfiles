@@ -100,6 +100,19 @@ To update the lock deliberately:
 nix flake update --flake "path:$HOME/.config/home-manager"
 ```
 
+## Desktop applications
+
+Configured apps have their own modules: `kitty.nix`, `vivaldi.nix`, `discord.nix`,
+`rectangle.nix`, `keepingyouawake.nix`, and `nextdns.nix`. Rectangle,
+KeepingYouAwake, and NextDNS are enabled only on macOS. Obsidian has no declared
+settings and stays in `packages.nix`. Shared macOS app copying and Spotlight
+registration live in `macos-apps.nix`.
+
+Quit Vivaldi and Discord before rebuilding to apply their saved preferences.
+Vivaldi is the default browser on Linux; macOS activation requests the same and
+may require confirmation. If it remains unchanged, select Vivaldi in System
+Settings → Desktop & Dock → Default web browser.
+
 ## Recovery and storage
 
 Keep a verified Time Machine backup before resetting the Mac. This repository
