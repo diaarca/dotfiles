@@ -117,6 +117,11 @@ inside it. Existing apps in `/Applications` are left alone. If macOS requests Ap
 Management permission, grant it to the terminal used for the rebuild under
 System Settings → Privacy & Security → App Management, then rerun the rebuild.
 
+After installation, start Rectangle with
+`open "$HOME/Applications/Home Manager Apps/Rectangle.app"`, grant Accessibility
+permission, and enable **Launch on login** in its preferences. It runs in the
+menu bar; test window snapping with **Control–Option–Left/Right**.
+
 Kitty retains its existing settings. `desktop-apps.nix` merges selected Vivaldi
 interface/download preferences and Discord's background, hardware acceleration,
 and host-update settings into writable files on both platforms. Quit those apps
