@@ -12,6 +12,8 @@ flakes/
 .config/home-manager/packages
 .config/nextdns
 .config/home-manager/macos-defaults.nix
+.config/home-manager/macos-menu-bar.nix
+.config/home-manager/macos-menu-bar.json
 .config/home-manager/macos-shortcuts.json
 .config/home-manager/user.json
 {{ end }}
