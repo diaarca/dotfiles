@@ -5,6 +5,8 @@
     enable = true;
 
     interactiveShellInit = ''
+      set -g fish_greeting ""
+
       # source personal fish config if it exists
       if test -f ~/.fishrc
         source ~/.fishrc
