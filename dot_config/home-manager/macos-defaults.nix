@@ -8,8 +8,8 @@
       "AppleMetricUnits" = 1;
       "AppleShowScrollBars" = "Always";
       "AppleTemperatureUnit" = "Celsius";
-      "InitialKeyRepeat" = 15;
-      "KeyRepeat" = 2;
+      "InitialKeyRepeat" = 25; # Delay before a held key starts repeating; lower is faster.
+      "KeyRepeat" = 1; # Interval between repeats; lower is faster.
       "NSAutomaticCapitalizationEnabled" = true;
       "NSAutomaticDashSubstitutionEnabled" = true;
       "NSAutomaticPeriodSubstitutionEnabled" = false;

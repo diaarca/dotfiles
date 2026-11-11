@@ -1,4 +1,8 @@
-{ user, ... }:
+{
+  pkgs,
+  user,
+  ...
+}:
 
 {
   imports = [ ./macos-defaults.nix ];
@@ -8,7 +12,10 @@
 
   system.primaryUser = user.username;
   system.stateVersion = 7;
-  users.users.${user.username}.home = user.homeDirectory;
+  users.users.${user.username} = {
+    home = user.homeDirectory;
+    shell = pkgs.fish;
+  };
 
   nix.settings.experimental-features = [
     "nix-command"

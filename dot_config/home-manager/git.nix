@@ -55,12 +55,6 @@ in
       merge = {
         conflictstyle = "diff3";
       };
-
-      url = {
-        "ssh://git@github.com/" = {
-          insteadOf = "https://github.com/";
-        };
-      };
     };
   };
 
