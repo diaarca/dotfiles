@@ -1,11 +1,7 @@
 { pkgs, lib, ... }:
 
 let
-  # fetch the delta themes files from github
-  deltaThemes = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/dandavison/delta/main/themes.gitconfig";
-    hash = "sha256-kPGzO4bzUXUAeG82UjRk621uL1faNOZfN4wNTc1oeN4=";
-  };
+  deltaThemes = "${pkgs.delta.src}/themes.gitconfig";
 in
 {
   # delta is now its own top-level program
