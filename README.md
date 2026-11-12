@@ -52,7 +52,18 @@ home-manager switch
 The shared `home.nix` still derives the username from `$USER` and uses `/home` on
 Linux. Chezmoi excludes the macOS flake and modules from Linux deployments, so
 Home Manager continues using the channel-based configuration. Linux's existing
-nixGL import remains unpinned; this change only introduces a locked macOS setup.
+nixGL import remains unpinned. The macOS configuration and optional Linux SDDM
+theme use the repository's Nixpkgs lock.
+
+### Login screen (SDDM)
+
+Run these commands from the chezmoi source directory. Preview the theme in a
+test window, then close that window before installing:
+
+```sh
+bash setup-scripts/linux/sddm/install.sh --preview
+bash setup-scripts/linux/sddm/install.sh
+```
 
 ## macOS
 
