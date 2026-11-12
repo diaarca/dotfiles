@@ -1,0 +1,13 @@
+local defaults = require("config.defaults")
+
+hl.on("hyprland.start", function()
+    hl.exec_cmd("swaybg -o '*' -i /usr/share/wallpapers/cachyos-wallpapers/Skyscraper.png -m fill")
+    hl.exec_cmd("waybar")
+    hl.exec_cmd("fcitx5 -d")
+    hl.exec_cmd("mako")
+    hl.exec_cmd("nm-applet --indicator")
+    hl.exec_cmd([[mkfifo "/tmp/$HYPRLAND_INSTANCE_SIGNATURE.wob" && tail -f "/tmp/$HYPRLAND_INSTANCE_SIGNATURE.wob" | wob]])
+    hl.exec_cmd("/usr/lib/polkit-kde-authentication-agent-1")
+    hl.exec_cmd("dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE PATH HYPRCURSOR_SIZE XCURSOR_SIZE QT_CURSOR_SIZE")
+    hl.exec_cmd(defaults.idle_handler)
+end)
